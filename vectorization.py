@@ -18,15 +18,15 @@ c = np.dot(a.T, b)
 toc = time.time()
 
 # print out toc and tic difference in ms
-print("Vectorized version: " + str(1000*(toc-tic)) + "ms")
+print("Vectorized version: " + str(1000 * (toc - tic)) + "ms")
 
 # multiply a and b using for loop
 
 c = 0
 tic = time.time()
 for i in range(1000000):
-    c += a[i]*b[i]
+    c += a[i] * b[i]
 
 toc = time.time()
 
-print("For loop: " + str(1000*(toc-tic)) + "ms")
+print("For loop: " + str(1000 * (toc - tic)) + "ms")
