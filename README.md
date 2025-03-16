@@ -37,7 +37,7 @@ Let’s clarify the different types of tensor shapes:
    - **Shape**: `[depth, rows, columns]`
    - Example: A 3D tensor of shape `(2, 3, 3)` represents 2 matrices, each of size `(3, 3)`.
 
-### 5. **4-Dimensional Tensor ** 
+### 5. **A-batch of Tensors**
    - A **4D tensor** is essentially a 4D array.
    - **Shape**: `[batch, height, width, channels]`
    - Example: `np.ones((1, 4, 4, 3))` creates a 4D array with the following dimensions:
