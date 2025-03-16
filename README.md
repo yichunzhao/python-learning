@@ -41,11 +41,11 @@ Let’s clarify the different types of tensor shapes:
    - A **4D tensor** is essentially a 4D array.
    - **Shape**: `[batch, height, width, channels]`
    - Example: `np.ones((1, 4, 4, 3))` creates a 4D array with the following dimensions:
-        * 1: This is often referred to as the batch size. It indicates that there's one "sample" in this array.
-        * 4: This represents the height of the 2D spatial dimensions.
-        * 4: This represents the width of the 2D spatial dimensions.
-        * 3: This represents the number of channels (e.g., RGB for an image).
-    * So, this creates a tensor where every entry is a 1.
+        - 1: This is often referred to as the batch size. It indicates that there's one "sample" in this array.
+        - 4: This represents the height of the 2D spatial dimensions.
+        - 4: This represents the width of the 2D spatial dimensions.
+        - 3: This represents the number of channels (e.g., RGB for an image).
+        - So, this creates a tensor where every entry is a 1.
 
 
 ---
