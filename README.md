@@ -56,6 +56,7 @@ In the context of your **unit test**, when it mentions the shape `[C]`, it is re
 - **Shape `[C]`** means a **1D tensor with C elements**.
 - **Shape `[C, 1]`** would mean a **2D tensor with C rows and 1 column**, which is incorrect for your test case.
 
+
 The function you have should return a **1D tensor of shape `[C]`** as per the test requirements. If you have a `1D tensor` but it has the shape `[C, 1]`, it should be **reshaped** to `[C]` to match the test.
 
 **Explanation of `X1 = np.ones((1, 4, 4, 3)) * -1`**
