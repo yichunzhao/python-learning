@@ -3,11 +3,10 @@ import numpy as np
 m = 1000
 batche_size = 64
 
-# create a Array 1000000 x 1 with random integers
+# create an Array m x 1 with random integers
 a = np.random.rand(m, 1)
 
 # partition the array into batches with batch-size 64
-
 batch_size = m // batche_size
 last_batch_size = m % batche_size
 print("Batch size: " + str(batch_size))
