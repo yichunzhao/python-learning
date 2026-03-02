@@ -15,3 +15,5 @@ query_engine = index.as_query_engine()
 # 4. Ask a question
 response = query_engine.query("What is the main topic of these documents?")
 print(response)
+
+
