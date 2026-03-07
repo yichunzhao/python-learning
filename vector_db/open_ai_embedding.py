@@ -1,3 +1,4 @@
+# vector_db/open_ai_embedding.py
 import math
 from openai import OpenAI
 
@@ -15,12 +16,8 @@ response = client.embeddings.create(
     input=documents
 )
 
-# Collect embeddings into a list for easier processing
 embeddings = [d.embedding for d in response.data]
-
-# number of embeddings returned (should match number of inputs)
 num_embeddings = len(embeddings)
-# length of a single embedding vector (embedding dimension)
 embedding_dim = len(embeddings[0]) if num_embeddings > 0 else 0
 
 print("type of response:", type(response))
@@ -36,7 +33,6 @@ def euclidean_distance(v1, v2):
 
 def pairwise_l2_distances(vectors):
     n = len(vectors)
-    # Initialize n x n distance matrix with zeros
     dist = [[0.0] * n for _ in range(n)]
     for i in range(n):
         for j in range(i + 1, n):
@@ -46,11 +42,32 @@ def pairwise_l2_distances(vectors):
     return dist
 
 
-# Compute all pairwise L2 (Euclidean) distances between embeddings
-distance_matrix = pairwise_l2_distances(embeddings)
+def cosine_similarity(v1, v2):
+    dot = sum(x * y for x, y in zip(v1, v2))
+    norm1 = math.sqrt(sum(x * x for x in v1))
+    norm2 = math.sqrt(sum(y * y for y in v2))
+    if norm1 == 0 or norm2 == 0:
+        return 0.0
+    return dot / (norm1 * norm2)
 
+
+def pairwise_cosine_similarities(vectors):
+    n = len(vectors)
+    sim = [[0.0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(i, n):
+            s = cosine_similarity(vectors[i], vectors[j])
+            sim[i][j] = s
+            sim[j][i] = s
+    return sim
+
+
+distance_matrix = pairwise_l2_distances(embeddings)
 print("pairwise L2 distance matrix (num_embeddings x num_embeddings):")
 for row in distance_matrix:
-    # format each row to a compact string with 4 decimal places
     print("[" + ", ".join(f"{v:.4f}" for v in row) + "]")
 
+cosine_sim_matrix = pairwise_cosine_similarities(embeddings)
+print("pairwise cosine similarity matrix (num_embeddings x num_embeddings):")
+for row in cosine_sim_matrix:
+    print("[" + ", ".join(f"{v:.4f}" for v in row) + "]")
